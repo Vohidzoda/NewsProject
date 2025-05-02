@@ -7,11 +7,13 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.newsproject.R
+import com.example.newsproject.presentation.handler.UrlHandler
 import com.example.newsproject.presentation.toolbar.ToolbarHandler
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -20,6 +22,8 @@ import javax.inject.Inject
 class NewsDetailFragment : Fragment(R.layout.fragment_news_detail) {
 
     @Inject lateinit var toolbarHandler: ToolbarHandler
+    @Inject lateinit var urlHandler: UrlHandler
+
 
     private val args by navArgs<NewsDetailFragmentArgs>()
     private lateinit var titleTextView: TextView
@@ -55,15 +59,20 @@ class NewsDetailFragment : Fragment(R.layout.fragment_news_detail) {
             .centerCrop()
             .into(imageView)
 
+        val linkTextView: TextView = view.findViewById(R.id.newsLink)
         linkTextView.text = newsArticle.url
         linkTextView.setOnClickListener {
-            try {
-                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(newsArticle.url))
-                startActivity(browserIntent)
-            } catch (e: Exception) {
-
+            val url = newsArticle.url
+            println("Clicked URL: $url")
+            if (url.isNotBlank()) {
+                urlHandler.openUrl(url)
+            } else {
+                Toast.makeText(requireContext(), "Некорректная ссылка", Toast.LENGTH_SHORT).show()
             }
         }
+
+
+
     }
 
     override fun onDestroyView() {

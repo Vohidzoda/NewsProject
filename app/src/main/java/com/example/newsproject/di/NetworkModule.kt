@@ -16,7 +16,7 @@ import javax.inject.Singleton
 object NetworkModule {
 
     private const val BASE_URL = "https://newsapi.org/v2/"
-    private const val API_KEY = "c1f4a5ebd68248dd904bafe15095d593"
+    private const val API_KEY = "3b225eb4758746dcb33fae40c33dc504"
 
     @Provides
     @Singleton
