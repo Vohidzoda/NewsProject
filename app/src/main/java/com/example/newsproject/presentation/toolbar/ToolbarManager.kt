@@ -13,6 +13,7 @@ class ToolbarManager @Inject constructor(
 ) : ToolbarHandler {
 
     override fun setupToolbar(toolbar: Toolbar) {
+        (context as? AppCompatActivity)?.setSupportActionBar(toolbar)
         toolbar.title = context.getString(R.string.app_name)
         toolbar.menu.clear()
         toolbar.inflateMenu(R.menu.main_menu)
@@ -24,5 +25,9 @@ class ToolbarManager @Inject constructor(
 
     override fun setTitle(title: String) {
         (context as? AppCompatActivity)?.supportActionBar?.title = title
+    }
+
+    override fun enableBackButton(enabled: Boolean) {
+        (context as? AppCompatActivity)?.supportActionBar?.setDisplayHomeAsUpEnabled(enabled)
     }
 }
