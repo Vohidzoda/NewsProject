@@ -5,4 +5,6 @@ import androidx.appcompat.widget.Toolbar
 interface ToolbarHandler {
     fun setupToolbar(toolbar: Toolbar)
     fun setTitle(title: String)
+    fun enableBackButton(enabled: Boolean)
+
 }
