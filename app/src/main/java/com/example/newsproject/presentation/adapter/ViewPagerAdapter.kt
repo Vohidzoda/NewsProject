@@ -4,13 +4,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.newsproject.R
 import com.example.newsproject.presentation.fragment.UniversalNewsFragment
 
 class ViewPagerAdapter(
-    fragment: Fragment
+    fragment: Fragment,
+    private val categories: List<String> = listOf(
+        fragment.getString(R.string.politics),
+        fragment.getString(R.string.sport),
+        fragment.getString(R.string.business),
+        fragment.getString(R.string.science)
+    )
 ) : FragmentStateAdapter(fragment) {
 
-    private val categories = listOf("politics", "sport", "business", "science")
 
     override fun getItemCount(): Int = categories.size
 

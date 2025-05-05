@@ -1,7 +1,5 @@
 package com.example.newsproject.presentation.fragment
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -10,20 +8,24 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.example.data.mapper.toDomain
+import com.example.domain.model.usecase.history.InsertHistoryUseCase
 import com.example.newsproject.R
 import com.example.newsproject.presentation.handler.UrlHandler
 import com.example.newsproject.presentation.toolbar.ToolbarHandler
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class NewsDetailFragment : Fragment(R.layout.fragment_news_detail) {
 
+    @Inject lateinit var insertHistoryUseCase: InsertHistoryUseCase
     @Inject lateinit var toolbarHandler: ToolbarHandler
     @Inject lateinit var urlHandler: UrlHandler
-
 
     private val args by navArgs<NewsDetailFragmentArgs>()
     private lateinit var titleTextView: TextView
@@ -34,7 +36,11 @@ class NewsDetailFragment : Fragment(R.layout.fragment_news_detail) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        toolbarHandler.setTitle("Детали новости")
+        val newsArticleUi = args.newsArticle
+        val newsDomain = newsArticleUi.toDomain()
+
+
+        toolbarHandler.setTitle(getString(R.string.news_details_title))
         toolbarHandler.enableBackButton(true)
         setHasOptionsMenu(true)
 
@@ -59,7 +65,11 @@ class NewsDetailFragment : Fragment(R.layout.fragment_news_detail) {
             .centerCrop()
             .into(imageView)
 
-        val linkTextView: TextView = view.findViewById(R.id.newsLink)
+
+        lifecycleScope.launch {
+            insertHistoryUseCase(newsDomain)
+        }
+
         linkTextView.text = newsArticle.url
         linkTextView.setOnClickListener {
             val url = newsArticle.url
@@ -70,9 +80,6 @@ class NewsDetailFragment : Fragment(R.layout.fragment_news_detail) {
                 Toast.makeText(requireContext(), "Некорректная ссылка", Toast.LENGTH_SHORT).show()
             }
         }
-
-
-
     }
 
     override fun onDestroyView() {

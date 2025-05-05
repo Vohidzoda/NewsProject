@@ -1,10 +1,10 @@
 package com.example.data.remote
 
 data class NewsResponseDto (
-    val articles: List<ArticleDto>
+    val articles: List<NewsArticleDto>
 )
 
-data class ArticleDto(
+data class NewsArticleDto(
     val title: String?,
     val description: String?,
     val urlToImage: String?,

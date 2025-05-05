@@ -1,6 +1,8 @@
 package com.example.newsproject.di
 
+import com.example.data.repository.HistoryRepositoryImpl
 import com.example.data.repository.NewsRepositoryImpl
+import com.example.domain.model.repository.HistoryRepository
 import com.example.domain.model.repository.NewsRepository
 import dagger.Binds
 import dagger.Module
@@ -17,4 +19,10 @@ abstract class RepositoryModule {
     abstract fun bindNewsRepository(
         impl: NewsRepositoryImpl
     ): NewsRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindHistoryRepository(
+        impl: HistoryRepositoryImpl
+    ): HistoryRepository
 }

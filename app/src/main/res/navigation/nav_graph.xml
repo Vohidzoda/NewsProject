@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
+
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.newsproject.presentation.fragment.HomeFragment"
@@ -10,6 +11,9 @@
         <action
             android:id="@+id/action_homeFragment_to_universalNewsFragment"
             app:destination="@id/universalNewsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
 
     <fragment
@@ -29,5 +33,11 @@
             android:name="news_article"
             app:argType="com.example.data.model.NewsArticleUiModel" />
     </fragment>
+
+    <!-- Добавляем SettingsFragment -->
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.newsproject.presentation.fragment.SettingsFragment"
+        android:label="SettingsFragment" />
 
 </navigation>

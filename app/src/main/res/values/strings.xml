@@ -4,6 +4,28 @@
     <string name="history">History</string>
     <string name="star">Star</string>
     <string name="settings">Settings</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error_loading">Ошибка загрузки</string>
+
+    <string name="dialog_delete_title">Удалить новость?</string>
+    <string name="dialog_delete_message">Вы уверены, что хотите удалить эту новость из истории?</string>
+    <string name="dialog_delete_confirm">Удалить</string>
+    <string name="dialog_delete_cancel">Отмена</string>
+
+    <string name="news_details_title">Детали новости</string>
+
+
+    <string name="politics">politics</string>
+    <string name="sport">sport</string>
+    <string name="business">business</string>
+    <string name="science">science</string>
+
+    <string name="tab_politics">Politics</string>
+    <string name="tab_sport">Sport</string>
+    <string name="tab_business">Business</string>
+    <string name="tab_science">Science</string>
+
+
+
+
+
 </resources>

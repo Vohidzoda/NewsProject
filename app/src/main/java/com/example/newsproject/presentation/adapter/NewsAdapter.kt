@@ -26,6 +26,10 @@ class NewsAdapter(
         holder.bind(getItem(position))
     }
 
+    fun getItemAt(position: Int): NewsArticle {
+        return getItem(position)
+    }
+
     inner class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val titleTextView: TextView = view.findViewById(R.id.titleTextView)
         private val descriptionTextView: TextView = view.findViewById(R.id.descriptionTextViewV)
@@ -47,8 +51,11 @@ class NewsAdapter(
 
     companion object {
         private val DIFF = object : DiffUtil.ItemCallback<NewsArticle>() {
-            override fun areItemsTheSame(oldItem: NewsArticle, newItem: NewsArticle) = oldItem.url == newItem.url
-            override fun areContentsTheSame(oldItem: NewsArticle, newItem: NewsArticle) = oldItem == newItem
+            override fun areItemsTheSame(oldItem: NewsArticle, newItem: NewsArticle) =
+                oldItem.url == newItem.url
+
+            override fun areContentsTheSame(oldItem: NewsArticle, newItem: NewsArticle) =
+                oldItem == newItem
         }
     }
 }

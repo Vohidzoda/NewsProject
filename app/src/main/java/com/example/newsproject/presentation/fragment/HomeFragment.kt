@@ -32,12 +32,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = when(position) {
-                0 -> "Politics"
-                1 -> "Sport"
-                2 -> "Business"
-                3 -> "Science"
+                0 -> tabLayout.context.getString(R.string.tab_politics)
+                1 -> tabLayout.context.getString(R.string.tab_sport)
+                2 -> tabLayout.context.getString(R.string.tab_business)
+                3 -> tabLayout.context.getString(R.string.tab_science)
                 else -> ""
             }
         }.attach()
     }
+
 }
