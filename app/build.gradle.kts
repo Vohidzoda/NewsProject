@@ -46,6 +46,15 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":data"))
 
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
+
+
+    implementation ("androidx.room:room-runtime:2.7.1")
+    kapt ("androidx.room:room-compiler:2.7.1")
+    implementation ("androidx.room:room-ktx:2.7.1")
+
+
     implementation ("androidx.navigation:navigation-fragment-ktx:2.5.3")
 
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
