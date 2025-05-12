@@ -27,6 +27,9 @@
     <string name="error_adding_to_favorites">Ошибка при добавлении в избранное</string>
     <string name="error_removing_from_favorites">Ошибка при удалении из избранного</string>
 
+    <string name="titleSettings">Select the news categories you want to see on your home screen:</string>
+
+
 
 
 
