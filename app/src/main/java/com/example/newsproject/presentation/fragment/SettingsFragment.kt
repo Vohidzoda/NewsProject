@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.newsproject.R
 
-
+//TODO: what is this?
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
 

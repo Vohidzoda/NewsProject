@@ -11,6 +11,7 @@ class NewsRepositoryImpl @Inject constructor(
 ) : NewsRepository {
 
     override suspend fun getNewsByCategory(category: String): List<NewsArticle> {
+        // TODO: Handle API errors and exceptions
         val response = api.getTopHeadlines(category = category)
         return response.articles.map { it.toDomain(category) }
     }

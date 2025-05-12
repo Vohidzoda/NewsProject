@@ -6,6 +6,7 @@ import com.example.domain.model.NewsArticle
 fun NewsArticleDto.toDomain(category: String): NewsArticle {
     return NewsArticle(
         title = title ?: "No Title",
+        // TODO: Use a placeholder description
         description = description ?: "No Description",
         urlToImage = urlToImage ?: "",
         url = url ?: "",

@@ -25,4 +25,5 @@ class HistoryRepositoryImpl @Inject constructor(
         historyDao.deleteByUrl(news.url)
     }
 
+    // TODO: Add method to clear all history
 }

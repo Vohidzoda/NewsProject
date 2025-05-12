@@ -7,7 +7,7 @@ import com.example.newsproject.presentation.swipe.handler.SwipeHandler
 import javax.inject.Inject
 
 class HistorySwipeHandler @Inject constructor(
-    private val context: Context
+    private val context: Context//TODO: not used!
 ) : SwipeHandler {
 
     private var itemTouchHelper: ItemTouchHelper? = null

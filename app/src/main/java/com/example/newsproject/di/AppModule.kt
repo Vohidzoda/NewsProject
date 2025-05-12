@@ -12,6 +12,7 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
+    //TODO: это не нужно!
     @Provides
     fun provideContext(@ApplicationContext context: Context): Context {
         return context

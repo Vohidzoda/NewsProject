@@ -3,6 +3,7 @@ package com.example.data.dao
 import androidx.room.*
 import com.example.data.entity.FavoriteEntity
 
+//TODO: not used!
 @Dao
 interface FavoriteDao {
 

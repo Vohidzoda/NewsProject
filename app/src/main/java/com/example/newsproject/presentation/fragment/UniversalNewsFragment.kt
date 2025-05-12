@@ -38,6 +38,7 @@ class UniversalNewsFragment : Fragment(R.layout.fragment_universal_news) {
         fun newInstance(category: String): UniversalNewsFragment {
             return UniversalNewsFragment().apply {
                 arguments = Bundle().apply {
+                    //TODO: use constants
                     putString("category", category)
                 }
             }
@@ -86,6 +87,9 @@ class UniversalNewsFragment : Fragment(R.layout.fragment_universal_news) {
             attachToRecyclerView(recyclerView)
         }
     }
+
+
+    //TODO: replace with native method navigation between fragments
     private fun navigateToDetailFragment(article: NewsArticle) {
         val navController = requireActivity().findNavController(R.id.nav_host_fragment)
         val bundle = Bundle().apply {
@@ -97,7 +101,7 @@ class UniversalNewsFragment : Fragment(R.layout.fragment_universal_news) {
     private fun observeUiState() {
         lifecycleScope.launch {
             viewModel.uiState.collectLatest { state ->
-                if (state.error != null) {
+                if (state.error != null) {//TODO: what is this?
                 }
                 newsAdapter.submitList(state.news)
             }

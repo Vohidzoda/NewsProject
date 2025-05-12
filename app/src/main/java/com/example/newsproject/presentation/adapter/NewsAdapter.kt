@@ -18,6 +18,8 @@ class NewsAdapter(
 ) : ListAdapter<NewsArticle, NewsAdapter.NewsViewHolder>(DIFF) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
+
+        //TODO: too long line!
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_card, parent, false)
         return NewsViewHolder(view)
     }
@@ -31,14 +33,17 @@ class NewsAdapter(
     }
 
     inner class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
         private val titleTextView: TextView = view.findViewById(R.id.titleTextView)
         private val descriptionTextView: TextView = view.findViewById(R.id.descriptionTextViewV)
         private val imageView: ShapeableImageView = view.findViewById(R.id.imageCardView)
 
         fun bind(article: NewsArticle) {
+
             titleTextView.text = article.title
             descriptionTextView.text = article.description
 
+            //TODO: replace with single extension function
             Glide.with(imageView.context)
                 .load(article.urlToImage)
                 .placeholder(R.drawable.placeholder)

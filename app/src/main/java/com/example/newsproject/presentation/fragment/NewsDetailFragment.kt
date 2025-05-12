@@ -58,6 +58,7 @@ class NewsDetailFragment : Fragment(R.layout.fragment_news_detail) {
         titleTextView.text = newsArticle.title
         descriptionTextView.text = newsArticle.description
 
+        //TODO: replace with single extension function
         Glide.with(imageView.context)
             .load(newsArticle.urlToImage)
             .placeholder(R.drawable.placeholder)
@@ -66,6 +67,7 @@ class NewsDetailFragment : Fragment(R.layout.fragment_news_detail) {
             .into(imageView)
 
 
+        //TODO: use viewModel
         lifecycleScope.launch {
             insertHistoryUseCase(newsDomain)
         }
@@ -77,6 +79,7 @@ class NewsDetailFragment : Fragment(R.layout.fragment_news_detail) {
             if (url.isNotBlank()) {
                 urlHandler.openUrl(url)
             } else {
+                //TODO: use single function
                 Toast.makeText(requireContext(), "Некорректная ссылка", Toast.LENGTH_SHORT).show()
             }
         }
@@ -91,6 +94,7 @@ class NewsDetailFragment : Fragment(R.layout.fragment_news_detail) {
         toolbarHandler.enableBackButton(false)
     }
 
+    //TODO: deprecated, replace to latest
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
