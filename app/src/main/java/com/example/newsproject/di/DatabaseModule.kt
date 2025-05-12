@@ -17,11 +17,26 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
 
-    private val MIGRATION_1_2 = object : Migration(1, 2) {
+    private val MIGRATION_2_3 = object : Migration(2, 3) {
         override fun migrate(database: SupportSQLiteDatabase) {
+            database.execSQL("DROP TABLE IF EXISTS favorite")
 
+            database.execSQL("""
+            CREATE TABLE IF NOT EXISTS favorite (
+                id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                url TEXT NOT NULL,
+                title TEXT NOT NULL,
+                description TEXT NOT NULL,
+                urlToImage TEXT NOT NULL,
+                publishedAt TEXT NOT NULL,
+                UNIQUE(url) ON CONFLICT REPLACE
+            )
+        """)
+
+            database.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS index_favorite_url ON favorite (url)")
         }
     }
+
 
     @Provides
     @Singleton
@@ -31,10 +46,9 @@ object DatabaseModule {
             AppDatabase::class.java,
             "news_app_db"
         )
-            .addMigrations(MIGRATION_1_2)
+            .addMigrations(MIGRATION_2_3)
             .build()
     }
-
 
     @Provides
     fun provideHistoryDao(db: AppDatabase): HistoryDao = db.historyDao()

@@ -1,4 +1,3 @@
-// presentation/adapter/NewsAdapter.kt
 package com.example.newsproject.presentation.adapter
 
 import android.view.LayoutInflater

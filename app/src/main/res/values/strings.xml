@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">News</string>
-    <string name="home">Home</string>
+    <string name="home">News</string>
     <string name="history">History</string>
-    <string name="star">Star</string>
+    <string name="favorites">Star</string>
     <string name="settings">Settings</string>
     <string name="error_loading">Ошибка загрузки</string>
 
@@ -11,7 +11,7 @@
     <string name="dialog_delete_confirm">Удалить</string>
     <string name="dialog_delete_cancel">Отмена</string>
 
-    <string name="news_details_title">Детали новости</string>
+    <string name="news_details_title">News Detail</string>
 
 
     <string name="politics">politics</string>
@@ -23,6 +23,11 @@
     <string name="tab_sport">Sport</string>
     <string name="tab_business">Business</string>
     <string name="tab_science">Science</string>
+
+    <string name="error_adding_to_favorites">Ошибка при добавлении в избранное</string>
+    <string name="error_removing_from_favorites">Ошибка при удалении из избранного</string>
+
+
 
 
 

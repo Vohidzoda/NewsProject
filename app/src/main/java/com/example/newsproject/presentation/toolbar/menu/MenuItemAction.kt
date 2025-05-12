@@ -1,7 +1,10 @@
 package com.example.newsproject.presentation.toolbar.menu
 
-interface MenuItemAction {
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 
-    fun handle(itemId: Int): Boolean
-    fun getMenuItems(): List<Int>
+interface MenuItemAction {
+    fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater)
+    fun onOptionsItemSelected(menuItem: MenuItem): Boolean
 }

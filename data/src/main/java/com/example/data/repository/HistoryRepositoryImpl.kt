@@ -2,7 +2,7 @@ package com.example.data.repository
 
 import com.example.data.dao.HistoryDao
 import com.example.data.mapper.toDomain
-import com.example.data.mapper.toEntity
+import com.example.data.mapper.toHistoryEntity
 import com.example.domain.model.NewsArticle
 import com.example.domain.model.repository.HistoryRepository
 import kotlinx.coroutines.flow.Flow
@@ -14,7 +14,7 @@ class HistoryRepositoryImpl @Inject constructor(
 ): HistoryRepository {
 
     override suspend fun insert(news: NewsArticle) {
-        historyDao.insert(news.toEntity())
+        historyDao.insert(news.toHistoryEntity())
     }
 
     override fun getAllHistory(): Flow<List<NewsArticle>> {

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
+import com.example.newsproject.MainActivity
 import com.example.newsproject.R
 import com.example.newsproject.presentation.adapter.ViewPagerAdapter
 import com.example.newsproject.presentation.toolbar.ToolbarHandler
@@ -22,7 +23,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        toolbarHandler.setTitle("News")
+        toolbarHandler.setTitle(getString(R.string.home))
 
         viewPager = view.findViewById(R.id.viewPager2)
         tabLayout = view.findViewById(R.id.tabLayout)
