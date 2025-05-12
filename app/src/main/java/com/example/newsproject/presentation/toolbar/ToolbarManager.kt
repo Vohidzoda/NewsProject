@@ -1,33 +1,43 @@
 package com.example.newsproject.presentation.toolbar
 
-import android.content.Context
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.example.newsproject.R
+import androidx.core.view.MenuProvider
 import com.example.newsproject.presentation.toolbar.menu.MenuItemAction
 import javax.inject.Inject
 
-class ToolbarManager @Inject constructor(
-    private val context: Context,
-    private val actions: Set<@JvmSuppressWildcards MenuItemAction>
-) : ToolbarHandler {
+class ToolbarManager @Inject constructor() : ToolbarHandler {
 
-    override fun setupToolbar(toolbar: Toolbar) {
-        (context as? AppCompatActivity)?.setSupportActionBar(toolbar)
-        toolbar.title = context.getString(R.string.app_name)
-        toolbar.menu.clear()
-        toolbar.inflateMenu(R.menu.main_menu)
+    private var activity: AppCompatActivity? = null
+    private var menuProvider: MenuProvider? = null
 
-        toolbar.setOnMenuItemClickListener { item ->
-            actions.any { it.handle(item.itemId) }
+    override fun setupToolbar(activity: AppCompatActivity, toolbar: Toolbar, actions: List<MenuItemAction>) {
+        this.activity = activity
+        activity.setSupportActionBar(toolbar)
+
+        menuProvider?.let { activity.removeMenuProvider(it) }
+
+        menuProvider = object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                actions.forEach { it.onCreateOptionsMenu(menu, menuInflater) }
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return actions.any { it.onOptionsItemSelected(menuItem) }
+            }
         }
+
+        activity.addMenuProvider(menuProvider!!, activity)
     }
 
     override fun setTitle(title: String) {
-        (context as? AppCompatActivity)?.supportActionBar?.title = title
+        activity?.supportActionBar?.title = title
     }
 
     override fun enableBackButton(enabled: Boolean) {
-        (context as? AppCompatActivity)?.supportActionBar?.setDisplayHomeAsUpEnabled(enabled)
+        activity?.supportActionBar?.setDisplayHomeAsUpEnabled(enabled)
     }
 }

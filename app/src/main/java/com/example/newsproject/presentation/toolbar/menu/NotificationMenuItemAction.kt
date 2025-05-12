@@ -1,6 +1,10 @@
 package com.example.newsproject.presentation.toolbar.menu
 
 import android.content.Context
+import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.Toast
 import com.example.newsproject.R
 import javax.inject.Inject
@@ -8,13 +12,31 @@ import javax.inject.Inject
 class NotificationMenuItemAction @Inject constructor(
     private val context: Context
 ) : MenuItemAction {
+    var onNotificationClicked: (() -> Unit)? = null
 
-    override fun handle(itemId: Int): Boolean {
-        return if (itemId == R.id.notification) {
-            Toast.makeText(context, "Уведомление нажато", Toast.LENGTH_SHORT).show()
-            true
-        } else false
+    init {
+        Log.d("NotificationsMenuAction", "NotificationsMenuAction initialized!")
     }
 
-    override fun getMenuItems(): List<Int> = listOf(R.id.notification)
+    fun onCreateOptionsMenu(menu: Menu) {
+    }
+
+    override fun onCreateOptionsMenu(
+        menu: Menu,
+        menuInflater: MenuInflater
+    ) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
+        return when (menuItem.itemId) {
+            R.id.notification -> {
+                Log.d("NotificationsMenuAction", "Notification clicked!")
+                onNotificationClicked?.invoke()
+                true
+            }
+            else -> false
+        }
+    }
+
 }

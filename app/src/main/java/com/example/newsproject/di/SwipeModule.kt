@@ -2,6 +2,7 @@ package com.example.newsproject.di
 
 import android.content.Context
 import com.example.newsproject.presentation.swipe.handler.HistorySwipeHandler
+import com.example.newsproject.presentation.swipe.handler.FavoriteSwipeHandler
 import com.example.newsproject.presentation.swipe.factory.SwipeHandlerFactory
 import com.example.newsproject.presentation.swipe.factory.SwipeHandlerFactoryImpl
 import dagger.Module
@@ -20,7 +21,13 @@ object SwipeModule {
     ): HistorySwipeHandler = HistorySwipeHandler(context)
 
     @Provides
+    fun provideFavoriteSwipeHandler(
+        @ActivityContext context: Context
+    ): FavoriteSwipeHandler = FavoriteSwipeHandler(context)
+
+    @Provides
     fun provideSwipeHandlerFactory(
-        historySwipeHandler: HistorySwipeHandler
-    ): SwipeHandlerFactory = SwipeHandlerFactoryImpl(historySwipeHandler)
+        historySwipeHandler: HistorySwipeHandler,
+        favoriteSwipeHandler: FavoriteSwipeHandler
+    ): SwipeHandlerFactory = SwipeHandlerFactoryImpl(historySwipeHandler, favoriteSwipeHandler)
 }

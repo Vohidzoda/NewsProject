@@ -3,9 +3,12 @@ package com.example.newsproject.presentation.navigation
 import android.os.Bundle
 import androidx.navigation.NavController
 import com.example.newsproject.R
+import com.example.newsproject.presentation.toolbar.ToolbarHandler
 import javax.inject.Inject
 
-class BottomNavHandlerImpl @Inject constructor() : BottomNavHandler {
+class BottomNavHandlerImpl @Inject constructor(
+    private val toolbarHandler: ToolbarHandler
+) : BottomNavHandler {
 
     private var navController: NavController? = null
 
